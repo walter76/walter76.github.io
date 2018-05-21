@@ -294,7 +294,7 @@
         <p>In this post I will show how to create a branch if your repository is on GitHub
 and what you have to do to synchronize it with your local repository.</p>
 
-<h1 id="create-the-remote-branch-on-github">Create the Remote Branch on GitHub</h1>
+<h2 id="create-the-remote-branch-on-github">Create the Remote Branch on GitHub</h2>
 
 <p>First you need to create a remote branch on GitHub. This branch is afterwards
 used to synchronize with your local repository.</p>
@@ -308,14 +308,14 @@ where you can create a new one.</p>
 <p>Enter a branch name in the field, e.g. some-fix, and hit enter. The branch will
 be created from your current branch.</p>
 
-<h1 id="create-a-branch-in-your-local-repository">Create a Branch in Your Local Repository</h1>
+<h2 id="create-a-branch-in-your-local-repository">Create a Branch in Your Local Repository</h2>
 
 <p>Now you need a branch in your local repository. This branch is created by
 <code class="highlighter-rouge">git checkout -b some-fix</code>.</p>
 
 <p><img src="https://walter76.github.io/assets/git-create-branch-locally.png" alt="Create a Branch in Local Repository" /></p>
 
-<h1 id="set-the-remote-branch-as-upstream-branch">Set the Remote Branch as Upstream Branch</h1>
+<h2 id="set-the-remote-branch-as-upstream-branch">Set the Remote Branch as Upstream Branch</h2>
 
 <p>Now we need to tell git that we would like to synchronize this branch with the
 branch on GitHub. This is done by setting the remote branch as upstream branch.
@@ -324,24 +324,33 @@ can now use git pull/push to synchronize your work.</p>
 
 <p>You can also pull/push the remote branch with <code class="highlighter-rouge">git pull origin source</code></p>
 
-<h1 id="switch-branches">Switch Branches</h1>
+<h2 id="switch-branches">Switch Branches</h2>
 
 <p>You can switch branches locally with <code class="highlighter-rouge">git checkout &lt;branch&gt;</code>. If you want to
 switch to a new branch and create it automatically use
 <code class="highlighter-rouge">git checkout -b &lt;branch&gt;</code>.</p>
 
-<h1 id="list-branches">List Branches</h1>
+<h2 id="list-branches">List Branches</h2>
 
 <p>You can list all your branches with <code class="highlighter-rouge">git branch -v</code>.</p>
 
-<h1 id="create-branches">Create Branches</h1>
+<h2 id="create-branches">Create Branches</h2>
 
 <p>Branches are created with <code class="highlighter-rouge">git branch &lt;branch&gt;</code>.</p>
 
-<h1 id="delete-branches">Delete Branches</h1>
+<h2 id="delete-branches">Delete Branches</h2>
 
 <p>After you have finished working on that branch it is time to remove it. You can
 do this with <code class="highlighter-rouge">git branch -d &lt;branch&gt;</code>.</p>
+
+<h2 id="merge-branches">Merge Branches</h2>
+
+<p>Before deleting a branch you might want to merge your work to another branch,
+e.g. master. You can do the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
+git merge some-fix
+</code></pre></div></div>
 
         
       </section>
