@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.10.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>How to Work on a Branch with GitHub - The Chaotic Heap</title>
-<meta name="description" content="  Create the remote branch on github  Create a branch in the local repo  Set the remote branch as upstream branch with git branch --set-upstream-to=origin/source source. You can now use git pull/push to synchronize your work.  You can also pull/push the remote branch with git pull origin source  Switch branches with git checkout &lt;branch&gt;  List branches with git branch -v  Create branch with git branch &lt;branch&gt;">
+<meta name="description" content="In this post I will show how to create a branch if your repository is on GitHuband what you have to do to synchronize it with your local repository.">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://walter76.github.io/git/how-to-work-on-a-branch-with-github/">
 
 
-  <meta property="og:description" content="  Create the remote branch on github  Create a branch in the local repo  Set the remote branch as upstream branch with git branch --set-upstream-to=origin/source source. You can now use git pull/push to synchronize your work.  You can also pull/push the remote branch with git pull origin source  Switch branches with git checkout &lt;branch&gt;  List branches with git branch -v  Create branch with git branch &lt;branch&gt;">
+  <meta property="og:description" content="In this post I will show how to create a branch if your repository is on GitHuband what you have to do to synchronize it with your local repository.">
 
 
 
@@ -29,7 +29,7 @@
 
   <meta name="twitter:site" content="@Walter7610">
   <meta name="twitter:title" content="How to Work on a Branch with GitHub">
-  <meta name="twitter:description" content="  Create the remote branch on github  Create a branch in the local repo  Set the remote branch as upstream branch with git branch --set-upstream-to=origin/source source. You can now use git pull/push to synchronize your work.  You can also pull/push the remote branch with git pull origin source  Switch branches with git checkout &lt;branch&gt;  List branches with git branch -v  Create branch with git branch &lt;branch&gt;">
+  <meta name="twitter:description" content="In this post I will show how to create a branch if your repository is on GitHuband what you have to do to synchronize it with your local repository.">
   <meta name="twitter:url" content="https://walter76.github.io/git/how-to-work-on-a-branch-with-github/">
 
   
@@ -79,7 +79,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="https://walter76.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="The Chaotic Heap Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Chaotic Heap Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -91,7 +91,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://walter76.github.io/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -127,7 +127,7 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="https://walter76.github.io/">The Chaotic Heap</a>
+        <a class="site-title" href="/">The Chaotic Heap</a>
         <ul class="visible-links">
           
             
@@ -268,14 +268,14 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="How to Work on a Branch with GitHub">
-    <meta itemprop="description" content="  Create the remote branch on github  Create a branch in the local repo  Set the remote branch as upstream branch with git branch --set-upstream-to=origin/source source. You can now use git pull/push to synchronize your work.  You can also pull/push the remote branch with git pull origin source  Switch branches with git checkout &lt;branch&gt;  List branches with git branch -v  Create branch with git branch &lt;branch&gt;">
+    <meta itemprop="description" content="In this post I will show how to create a branch if your repository is on GitHuband what you have to do to synchronize it with your local repository.">
     <meta itemprop="datePublished" content="February 20, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">How to Work on a Branch with GitHub
+          <h1 id="page-title" class="page__title" itemprop="headline">How to Work on a Branch with GitHub
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -283,7 +283,7 @@
 
 
 
-  less than 1 minute read
+  1 minute read
 </p>
           
         </header>
@@ -291,15 +291,57 @@
 
       <section class="page__content" itemprop="text">
         
-        <ol>
-  <li>Create the remote branch on github</li>
-  <li>Create a branch in the local repo</li>
-  <li>Set the remote branch as upstream branch with <code class="highlighter-rouge">git branch --set-upstream-to=origin/source source</code>. You can now use git pull/push to synchronize your work.</li>
-  <li>You can also pull/push the remote branch with <code class="highlighter-rouge">git pull origin source</code></li>
-  <li>Switch branches with <code class="highlighter-rouge">git checkout &lt;branch&gt;</code></li>
-  <li>List branches with <code class="highlighter-rouge">git branch -v</code></li>
-  <li>Create branch with <code class="highlighter-rouge">git branch &lt;branch&gt;</code></li>
-</ol>
+        <p>In this post I will show how to create a branch if your repository is on GitHub
+and what you have to do to synchronize it with your local repository.</p>
+
+<h1 id="create-the-remote-branch-on-github">Create the Remote Branch on GitHub</h1>
+
+<p>First you need to create a remote branch on GitHub. This branch is afterwards
+used to synchronize with your local repository.</p>
+
+<p>Go to GitHub and open the repository that you would like to create the branch.
+In the first tab you can switch between branches and there is also the place
+where you can create a new one.</p>
+
+<p><img src="https://walter76.github.io/assets/github-create-branch.png" alt="Create a Branch on GitHub" /></p>
+
+<p>Enter a branch name in the field, e.g. some-fix, and hit enter. The branch will
+be created from your current branch.</p>
+
+<h1 id="create-a-branch-in-your-local-repository">Create a Branch in Your Local Repository</h1>
+
+<p>Now you need a branch in your local repository. This branch is created by
+<code class="highlighter-rouge">git checkout -b some-fix</code>.</p>
+
+<p><img src="https://walter76.github.io/assets/git-create-branch-locally.png" alt="Create a Branch in Local Repository" /></p>
+
+<h1 id="set-the-remote-branch-as-upstream-branch">Set the Remote Branch as Upstream Branch</h1>
+
+<p>Now we need to tell git that we would like to synchronize this branch with the
+branch on GitHub. This is done by setting the remote branch as upstream branch.
+You can do this with <code class="highlighter-rouge">git branch --set-upstream-to=origin/source source</code>. You
+can now use git pull/push to synchronize your work.</p>
+
+<p>You can also pull/push the remote branch with <code class="highlighter-rouge">git pull origin source</code></p>
+
+<h1 id="switch-branches">Switch Branches</h1>
+
+<p>You can switch branches locally with <code class="highlighter-rouge">git checkout &lt;branch&gt;</code>. If you want to
+switch to a new branch and create it automatically use
+<code class="highlighter-rouge">git checkout -b &lt;branch&gt;</code>.</p>
+
+<h1 id="list-branches">List Branches</h1>
+
+<p>You can list all your branches with <code class="highlighter-rouge">git branch -v</code>.</p>
+
+<h1 id="create-branches">Create Branches</h1>
+
+<p>Branches are created with <code class="highlighter-rouge">git branch &lt;branch&gt;</code>.</p>
+
+<h1 id="delete-branches">Delete Branches</h1>
+
+<p>After you have finished working on that branch it is time to remove it. You can
+do this with <code class="highlighter-rouge">git branch -d &lt;branch&gt;</code>.</p>
 
         
       </section>
@@ -322,7 +364,7 @@
     
       
       
-      <a href="https://walter76.github.io/categories/#git" class="page__taxonomy-item" rel="tag">git</a>
+      <a href="/categories/#git" class="page__taxonomy-item" rel="tag">git</a>
     
     </span>
   </p>
@@ -347,6 +389,16 @@
 
 
       
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/vagrant/jekyll/vagrant-box-for-jekyll/" class="pagination--pager" title="How to Set-up a Vagrant box for Jekyll
+">Next</a>
+    
+  </nav>
+
     </div>
 
     
@@ -367,7 +419,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://walter76.github.io/git/how-to-work-on-a-branch-with-github/" rel="permalink">How to Work on a Branch with GitHub
+        <a href="/vagrant/jekyll/vagrant-box-for-jekyll/" rel="permalink">How to Set-up a Vagrant box for Jekyll
 </a>
       
     </h2>
@@ -380,10 +432,39 @@
   less than 1 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">
-  Create the remote branch on github
-  Create a branch in the local repo
-  Set the remote branch as upstream branch with git branch --set-upstream-to=origin...</p>
+    <p class="archive__item-excerpt" itemprop="description">Prerequisites
+
+First I had to install the most up-to-date versions of Virtual Box and
+Vagrant on my Laptop. Virtual Box is used by Vagrant for the Virtual Ma...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/git/how-to-work-on-a-branch-with-github/" rel="permalink">How to Work on a Branch with GitHub
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In this post I will show how to create a branch if your repository is on GitHub
+and what you have to do to synchronize it with your local repository.
+
+</p>
   </article>
 </div>
         
@@ -412,7 +493,7 @@
     
     
     
-    <li><a href="https://walter76.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -422,9 +503,8 @@
     </div>
 
     
-  <script src="https://walter76.github.io/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 
 
 

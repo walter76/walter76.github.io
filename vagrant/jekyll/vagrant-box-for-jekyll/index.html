@@ -1,0 +1,468 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to Set-up a Vagrant box for Jekyll - The Chaotic Heap</title>
+<meta name="description" content="PrerequisitesFirst I had to install the most up-to-date versions of Virtual Box andVagrant on my Laptop. Virtual Box is used by Vagrant for the Virtual Machines. In additionalso a version of PowerShell &gt; 2 is needed. If you are using Windows 10, you should already have it installed. As myLaptop still runs on Windows 7, I had to install the Windows Management Framework v5.1. After some rebootsvagrant init jadesystems/rails5vagrant upvagrant sshvagrant suspendvagrant haltvagrant destroysudo apt-get updatesudo apt-get upgradeSelect /dev/sda1 /boot for grub?!sudo gem install bundlersudo apt-get install libffi-devsudo apt-get install libcurl4-openssl-devhttps://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/https://stackoverflow.com/questions/23840098/empty-reply-from-server-cant-connect-to-vagrant-vm-w-port-forwardingbundle exec jekyll serve –force_polling –port 8090 –host 0.0.0.0">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Chaotic Heap">
+<meta property="og:title" content="How to Set-up a Vagrant box for Jekyll">
+<meta property="og:url" content="https://walter76.github.io/vagrant/jekyll/vagrant-box-for-jekyll/">
+
+
+  <meta property="og:description" content="PrerequisitesFirst I had to install the most up-to-date versions of Virtual Box andVagrant on my Laptop. Virtual Box is used by Vagrant for the Virtual Machines. In additionalso a version of PowerShell &gt; 2 is needed. If you are using Windows 10, you should already have it installed. As myLaptop still runs on Windows 7, I had to install the Windows Management Framework v5.1. After some rebootsvagrant init jadesystems/rails5vagrant upvagrant sshvagrant suspendvagrant haltvagrant destroysudo apt-get updatesudo apt-get upgradeSelect /dev/sda1 /boot for grub?!sudo gem install bundlersudo apt-get install libffi-devsudo apt-get install libcurl4-openssl-devhttps://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/https://stackoverflow.com/questions/23840098/empty-reply-from-server-cant-connect-to-vagrant-vm-w-port-forwardingbundle exec jekyll serve –force_polling –port 8090 –host 0.0.0.0">
+
+
+
+
+
+  <meta name="twitter:site" content="@Walter7610">
+  <meta name="twitter:title" content="How to Set-up a Vagrant box for Jekyll">
+  <meta name="twitter:description" content="PrerequisitesFirst I had to install the most up-to-date versions of Virtual Box andVagrant on my Laptop. Virtual Box is used by Vagrant for the Virtual Machines. In additionalso a version of PowerShell &gt; 2 is needed. If you are using Windows 10, you should already have it installed. As myLaptop still runs on Windows 7, I had to install the Windows Management Framework v5.1. After some rebootsvagrant init jadesystems/rails5vagrant upvagrant sshvagrant suspendvagrant haltvagrant destroysudo apt-get updatesudo apt-get upgradeSelect /dev/sda1 /boot for grub?!sudo gem install bundlersudo apt-get install libffi-devsudo apt-get install libcurl4-openssl-devhttps://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/https://stackoverflow.com/questions/23840098/empty-reply-from-server-cant-connect-to-vagrant-vm-w-port-forwardingbundle exec jekyll serve –force_polling –port 8090 –host 0.0.0.0">
+  <meta name="twitter:url" content="https://walter76.github.io/vagrant/jekyll/vagrant-box-for-jekyll/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-03-21T07:24:01+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://walter76.github.io/vagrant/jekyll/vagrant-box-for-jekyll/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Walter",
+      "url": "https://walter76.github.io",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Chaotic Heap Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">The Chaotic Heap</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://walter76.github.io/" ></a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Walter</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        I love creating software and coaching people.
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:walter.stocker@gmx.de">
+            <meta itemprop="email" content="walter.stocker@gmx.de" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/Walter7610" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/walter76" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to Set-up a Vagrant box for Jekyll">
+    <meta itemprop="description" content="PrerequisitesFirst I had to install the most up-to-date versions of Virtual Box andVagrant on my Laptop. Virtual Box is used by Vagrant for the Virtual Machines. In additionalso a version of PowerShell &gt; 2 is needed. If you are using Windows 10, you should already have it installed. As myLaptop still runs on Windows 7, I had to install the Windows Management Framework v5.1. After some rebootsvagrant init jadesystems/rails5vagrant upvagrant sshvagrant suspendvagrant haltvagrant destroysudo apt-get updatesudo apt-get upgradeSelect /dev/sda1 /boot for grub?!sudo gem install bundlersudo apt-get install libffi-devsudo apt-get install libcurl4-openssl-devhttps://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/https://stackoverflow.com/questions/23840098/empty-reply-from-server-cant-connect-to-vagrant-vm-w-port-forwardingbundle exec jekyll serve –force_polling –port 8090 –host 0.0.0.0">
+    <meta itemprop="datePublished" content="March 21, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to Set-up a Vagrant box for Jekyll
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h1 id="prerequisites">Prerequisites</h1>
+
+<p>First I had to install the most up-to-date versions of <a href="https://www.virtualbox.org/">Virtual Box</a> and
+<a href="https://www.vagrantup.com/">Vagrant</a> on my Laptop. Virtual Box is used by Vagrant for the Virtual Machines. In addition
+also a version of PowerShell &gt; 2 is needed. If you are using Windows 10, you should already have it installed. As my
+Laptop still runs on Windows 7, I had to install the <a href="https://docs.microsoft.com/en-us/powershell/wmf/5.1/install-configure">Windows Management Framework v5.1</a>. After some reboots</p>
+
+<p>vagrant init jadesystems/rails5
+vagrant up
+vagrant ssh</p>
+
+<p>vagrant suspend
+vagrant halt
+vagrant destroy</p>
+
+<p>sudo apt-get update
+sudo apt-get upgrade</p>
+
+<p>Select /dev/sda1 /boot for grub?!</p>
+
+<p>sudo gem install bundler
+sudo apt-get install libffi-dev
+sudo apt-get install libcurl4-openssl-dev
+https://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/
+https://stackoverflow.com/questions/23840098/empty-reply-from-server-cant-connect-to-vagrant-vm-w-port-forwarding</p>
+
+<p>bundle exec jekyll serve –force_polling –port 8090 –host 0.0.0.0</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#jekyll" class="page__taxonomy-item" rel="tag">jekyll</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#vagrant" class="page__taxonomy-item" rel="tag">vagrant</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-21T07:24:01+01:00">March 21, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=Walter7610&text=How+to+Set-up+a+Vagrant+box+for+Jekyll%20https%3A%2F%2Fwalter76.github.io%2Fvagrant%2Fjekyll%2Fvagrant-box-for-jekyll%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwalter76.github.io%2Fvagrant%2Fjekyll%2Fvagrant-box-for-jekyll%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fwalter76.github.io%2Fvagrant%2Fjekyll%2Fvagrant-box-for-jekyll%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwalter76.github.io%2Fvagrant%2Fjekyll%2Fvagrant-box-for-jekyll%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/git/how-to-work-on-a-branch-with-github/" class="pagination--pager" title="How to Work on a Branch with GitHub
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/git/how-to-work-on-a-branch-with-github/" rel="permalink">How to Work on a Branch with GitHub
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In this post I will show how to create a branch if your repository is on GitHub
+and what you have to do to synchronize it with your local repository.
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+      <li><a href="https://twitter.com/Walter7610"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/walter76"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Walter. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
